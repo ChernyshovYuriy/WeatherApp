@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="wrap_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="label_style" parent="wrap_content">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="temp_style" parent="wrap_content">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">#FF205f80</item>
+    </style>
+
+    <style name="humidity_style" parent="wrap_content">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#FF205F50</item>
+    </style>
+
+</resources>

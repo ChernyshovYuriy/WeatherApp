@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WeatherApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="cities_spinner_view_label">Select City:</string>
+    <string name="ok_string">OK</string>
+    <string name="cancel_string">Cancel</string>
+    <string name="degrees_temp_label">Degrees Temperature in:</string>
+    <string name="fahrenheit_abbreviation">°F</string>
+    <string name="percentage_abbreviation">%</string>
+    <string name="celsius_abbreviation">°C</string>
+    <string name="temperature_label">Temperature</string>
+    <string name="humidity_label">Humidity</string>
+
+    <string-array name="cities_array">
+        <item>Berlin</item>
+        <item>Paris</item>
+        <item>Los Angeles</item>
+    </string-array>
+
+    <!-- Abbreviations for the countries of the provided cities -->
+    <string-array name="countries_array">
+        <item>de</item>
+        <item>fr</item>
+        <item>us</item>
+    </string-array>
+
+</resources>
