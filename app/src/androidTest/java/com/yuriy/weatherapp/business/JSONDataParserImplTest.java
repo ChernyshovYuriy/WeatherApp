@@ -1,5 +1,6 @@
 package com.yuriy.weatherapp.business;
 
+import com.yuriy.weatherapp.ApplicationTest;
 import com.yuriy.weatherapp.business.vo.CloudsVO;
 import com.yuriy.weatherapp.business.vo.CoordVO;
 import com.yuriy.weatherapp.business.vo.CurrentWeatherVO;
@@ -27,21 +28,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class JSONDataParserImplTest extends TestCase {
 
-    private static final String RAW_RESPONSE
-            = "{\"coord\":{\"lon\":139,\"lat\":35},\n" +
-            "\"sys\":{\"country\":\"JP\",\"sunrise\":1369769524,\"sunset\":1369821049},\n" +
-            "\"weather\":[{\"id\":804,\"main\":\"clouds\",\"description\":\"overcast clouds\"," +
-            "\"icon\":\"04n\"}],\n" +
-            "\"main\":{\"temp\":289.5,\"humidity\":89,\"pressure\":1013,\"temp_min\":287.04," +
-            "\"temp_max\":292.04},\n" +
-            "\"wind\":{\"speed\":7.31,\"deg\":187.002},\n" +
-            "\"rain\":{\"3h\":0},\n" +
-            "\"clouds\":{\"all\":92},\n" +
-            "\"dt\":1369824698,\n" +
-            "\"id\":1851632,\n" +
-            "\"name\":\"Shuzenji\",\n" +
-            "\"cod\":200}";
-
     private DataParser mDataParser;
 
     @Override
@@ -53,7 +39,7 @@ public class JSONDataParserImplTest extends TestCase {
 
     public void testJSONFromRawDataShouldNotBeEmpty() {
         final JSONDataParserImpl parser = new JSONDataParserImpl();
-        final JSONObject jsonObject = parser.getJSONFromRawData(RAW_RESPONSE);
+        final JSONObject jsonObject = parser.getJSONFromRawData(ApplicationTest.RAW_RESPONSE);
 
         assertThat("JSON Object should not be null", jsonObject, notNullValue());
         assertTrue("JSON Object should not be empty", jsonObject.length() > 0);
@@ -98,7 +84,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParseCoordSuccess() {
-        final CoordVO coordVO = mDataParser.parseCityCoordinates(RAW_RESPONSE);
+        final CoordVO coordVO = mDataParser.parseCityCoordinates(ApplicationTest.RAW_RESPONSE);
 
         assertThat("Instance should not be null", coordVO, notNullValue());
         assertThat("Latitude should be same as original", coordVO.getLat(), is((double) 35));
@@ -124,7 +110,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParseSysSuccess() {
-        final SysVO sysVO = mDataParser.parseSysInfo(RAW_RESPONSE);
+        final SysVO sysVO = mDataParser.parseSysInfo(ApplicationTest.RAW_RESPONSE);
 
         assertThat("Instance should not be null", sysVO, notNullValue());
         assertThat("Country should be same as original", sysVO.getCountry(), is("JP"));
@@ -157,7 +143,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParsWeatherItemsSuccess() {
-        final List<WeatherItem> weatherItems = mDataParser.parseWeather(RAW_RESPONSE);
+        final List<WeatherItem> weatherItems = mDataParser.parseWeather(ApplicationTest.RAW_RESPONSE);
 
         assertThat("Instance should not be null", weatherItems, notNullValue());
         assertThat("Collection should be of size 1", weatherItems.size(), is(1));
@@ -185,7 +171,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParseMainSuccess() {
-        final MainVO mainVO = mDataParser.parseMainInfo(RAW_RESPONSE);
+        final MainVO mainVO = mDataParser.parseMainInfo(ApplicationTest.RAW_RESPONSE);
 
         assertThat("Instance should not be null", mainVO, notNullValue());
         assertThat("Temperature should be same as original",
@@ -231,7 +217,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParseWindSuccess() {
-        final WindVO windVO = mDataParser.parseWind(RAW_RESPONSE);
+        final WindVO windVO = mDataParser.parseWind(ApplicationTest.RAW_RESPONSE);
 
         assertThat("Instance should not be null", windVO, notNullValue());
         assertThat("Wind Speed should be same as original",
@@ -259,7 +245,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParseRainSuccess() {
-        final RainVO rainVO = mDataParser.parseRain(RAW_RESPONSE);
+        final RainVO rainVO = mDataParser.parseRain(ApplicationTest.RAW_RESPONSE);
 
         assertThat("Instance should not be null", rainVO, notNullValue());
         assertThat("Precipitation should be same as original", rainVO.get3h(), is(0));
@@ -280,7 +266,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParseCloudsSuccess() {
-        final CloudsVO cloudsVO = mDataParser.parseClouds(RAW_RESPONSE);
+        final CloudsVO cloudsVO = mDataParser.parseClouds(ApplicationTest.RAW_RESPONSE);
 
         assertThat("Instance should not be null", cloudsVO, notNullValue());
         assertThat("Cloudiness should be same as original", cloudsVO.getAll(), is((double)92));
@@ -301,7 +287,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParseDTSuccess() {
-        final double dt = mDataParser.parseDt(RAW_RESPONSE);
+        final double dt = mDataParser.parseDt(ApplicationTest.RAW_RESPONSE);
 
         assertThat("Data receive time should be same as original", dt, is((double)1369824698));
     }
@@ -319,7 +305,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParseCityIdSuccess() {
-        final int cityId = mDataParser.parseId(RAW_RESPONSE);
+        final int cityId = mDataParser.parseId(ApplicationTest.RAW_RESPONSE);
 
         assertThat("City Id should be same as original", cityId, is(1851632));
     }
@@ -337,7 +323,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParseCityNameSuccess() {
-        final String cityName = mDataParser.parseName(RAW_RESPONSE);
+        final String cityName = mDataParser.parseName(ApplicationTest.RAW_RESPONSE);
 
         assertThat("City Name should be same as original", cityName, is("Shuzenji"));
     }
@@ -355,7 +341,7 @@ public class JSONDataParserImplTest extends TestCase {
     }
 
     public void testParseCodeSuccess() {
-        final int cod = mDataParser.parseCod(RAW_RESPONSE);
+        final int cod = mDataParser.parseCod(ApplicationTest.RAW_RESPONSE);
 
         assertThat("Weather Condition Code should be same as original", cod, is(200));
     }
