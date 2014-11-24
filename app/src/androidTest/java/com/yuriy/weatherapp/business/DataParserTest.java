@@ -49,6 +49,10 @@ public class DataParserTest extends InstrumentationTestCase {
         // when downloader asks to download data - return real bytes array
         when(mDownloader.downloadDataFromUri(Uri.parse("")))
                 .thenReturn(ApplicationTest.RAW_RESPONSE.getBytes());
+
+        // TODO : In every test it is possible to test exact value of the formal parameter
+        //        of the method that is called. For the simplicity "anyString()" check method
+        //        is used.
     }
 
     public void testParseCityCoordinatesCall() {
